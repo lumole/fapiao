@@ -1,3 +1,4 @@
 *.pdf
 *.csv
 .vscode/
+**/__pycache__/
