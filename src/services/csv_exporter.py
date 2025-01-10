@@ -6,7 +6,7 @@ class CSVExporter:
     def export_records(filename, records, mode='w'):
         try:
             total = Decimal('0.00')
-            for _, amount_entry in records:
+            for _, _, amount_entry in records:
                 try:
                     amount = Decimal(amount_entry.get() or '0')
                     total += amount
@@ -17,16 +17,17 @@ class CSVExporter:
                 writer = csv.writer(f)
                 
                 if mode == 'w':
-                    writer.writerow(["物品名称", "金额"])
+                    writer.writerow(["物品名称", "规格型号", "金额"])
                 
-                for name_entry, amount_entry in records:
+                for name_entry, spec_entry, amount_entry in records:
                     if name_entry.get() and amount_entry.get():
                         writer.writerow([
                             name_entry.get(),
+                            spec_entry.get(),
                             amount_entry.get()
                         ])
                 
-                writer.writerow(["总计", f"{total:.2f}"])
+                writer.writerow(["总计", "", f"{total:.2f}"])
             
             return True, None
         except Exception as e:

@@ -30,6 +30,7 @@ class InvoiceMergerApp:
         # 设置记录管理器
         self.record_manager = RecordManager(self.main_frame)
         self.record_manager.frame.grid(row=0, column=2, rowspan=2, padx=5, sticky=(tk.W, tk.E, tk.N, tk.S))
+        self.record_manager.set_invoice_frame(self.invoice_frame)
         
         # 设置其他UI组件...
         self.setup_mode_frame()
